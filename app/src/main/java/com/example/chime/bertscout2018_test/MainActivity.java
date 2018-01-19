@@ -5,13 +5,33 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static String[] teams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        teams = new String[80];
+        for (int i = 0; i < 80; i++){
+          teams[i] =  String.format("%d", i+1000);
+        }
+
+        List<String> teamList = new ArrayList<String>(Arrays.asList(teams));
+        ArrayAdapter<String> gridViewArrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, teamList);
+        GridView gridView = (GridView) findViewById(R.id.gridView);
+        gridView.setAdapter(gridViewArrayAdapter);
+
     }
 
     @Override
