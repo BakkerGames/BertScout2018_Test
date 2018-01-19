@@ -1,5 +1,6 @@
 package com.example.chime.bertscout2018_test;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "com.example.chime.bertscout2018_test.MESSAGE";
+
     public static String[] teams;
 
     @Override
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         teams = new String[80];
         for (int i = 0; i < 80; i++) {
-            teams[i] = String.format("%d", i + 1000);
+            teams[i] = String.format("%d", i + 1001);
         }
 
         List<String> teamList = new ArrayList<String>(Arrays.asList(teams));
@@ -41,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 GridView gridView = (GridView) findViewById(R.id.gridView);
                 TextView v = (TextView) gridView.getChildAt(position);
-                Toast.makeText(MainActivity.this, v.getText(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, MatchActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, v.getText());
+                startActivity(intent);
+
+                //Toast.makeText(MainActivity.this, v.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
