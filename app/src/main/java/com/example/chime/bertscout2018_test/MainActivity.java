@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         teams = new String[80];
-        for (int i = 0; i < 80; i++){
-          teams[i] =  String.format("%d", i+1000);
+        for (int i = 0; i < 80; i++) {
+            teams[i] = String.format("%d", i + 1000);
         }
 
         List<String> teamList = new ArrayList<String>(Arrays.asList(teams));
@@ -31,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
                 (this, android.R.layout.simple_list_item_1, teamList);
         GridView gridView = (GridView) findViewById(R.id.gridView);
         gridView.setAdapter(gridViewArrayAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                GridView gridView = (GridView) findViewById(R.id.gridView);
+                TextView v = (TextView) gridView.getChildAt(position);
+                Toast.makeText(MainActivity.this, v.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -50,19 +63,21 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_team) {
-            this.setTitle("Add Team!");
+            Toast.makeText(this, "Add Team!", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (id == R.id.action_sync_data) {
-            this.setTitle("Sync Data!");
+            Toast.makeText(this, "Sync Data!", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (id == R.id.action_clear_data) {
-            this.setTitle("Clear Data!");
+            Toast.makeText(this, "Clear Data!", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
