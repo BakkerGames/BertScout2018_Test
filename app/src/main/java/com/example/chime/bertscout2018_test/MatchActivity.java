@@ -12,8 +12,9 @@ public class MatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
 
+        // get team number from MainActivity
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(MainActivity.TEAM_MESSAGE);
         TextView textView = findViewById(R.id.textViewMessage);
         textView.setText(message);
     }

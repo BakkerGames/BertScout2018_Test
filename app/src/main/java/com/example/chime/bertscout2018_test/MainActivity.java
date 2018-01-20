@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "com.example.chime.bertscout2018_test.MESSAGE";
+    public static final String TEAM_MESSAGE = "com.example.chime.bertscout2018_test.TEAM_MESSAGE";
 
     public static String[] teams;
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView v = (TextView) gridView.getChildAt(position);
 
                 Intent intent = new Intent(MainActivity.this, MatchActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, v.getText());
+                intent.putExtra(TEAM_MESSAGE, v.getText());
                 startActivity(intent);
 
                 //Toast.makeText(MainActivity.this, v.getText(), Toast.LENGTH_SHORT).show();
